@@ -17,7 +17,9 @@ namespace Bulky.DataAccess.Repository
         public Repository(ApplicationDbContext db)
         {
             _db = db;
-            this.dbSet=_db.Set<T>();    
+            this.dbSet=_db.Set<T>();
+            //_db.Categories = this.dbSet;
+            _db.Products.Include(u => u.Category);
         }
         public void Add(T entity)
         {
@@ -49,7 +51,7 @@ namespace Bulky.DataAccess.Repository
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            dbSet.Update(entity);
         }
     }
 }

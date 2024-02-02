@@ -1,0 +1,59 @@
+﻿@model Product
+<style>
+    /* Add your custom styles here */
+    .product-container {
+        max-width: 100%;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-top: 50px;
+    }
+
+    .product-image {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+<body>
+
+    <div class="container">
+        <div class="product-container">
+            <div class="col-sm-3">
+                <a asp-controller="Home" asp-action="Index" class="border btn btn-primary form-control">Back To Home</a>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="@Model.ImageUrl" alt="Product Image" class="product-image">
+                </div>
+                <div class="col-md-6">
+                    <h3>@Model.Title</h3>
+                    <p>@Html.Raw(Model.Description)</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">1-50</th>
+                                <th scope="col">51-100</th>
+                                <th scope="col">100+</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" id="quantity" value="1">
+                                    </div>
+                                </td>
+                                <td>@Model.Price.ToString("c")</td>
+                                <td>@Model.Price50.ToString("c")</td>
+                                <td>@Model.Price100.ToString("c")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
